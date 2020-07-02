@@ -82,6 +82,9 @@ def commit_git_directory(repo: git.Repo):
 
 
 def push_git_repository(repo: git.Repo):
+    try:
+        origin = repo.remote(name='origin')
+    except ValueError:
+        return
     logger.debug("Pushing to origin")
-    origin = repo.remote(name='origin')
     origin.push()
